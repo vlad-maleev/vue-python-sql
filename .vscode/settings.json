@@ -1,0 +1,4 @@
+{
+    "python.formatting.provider": "black",
+    "python.pythonPath": "C:\\Users\\VladMaleev\\Desktop\\vue-python-sql\\server\\env\\Scripts\\python.exe"
+}
