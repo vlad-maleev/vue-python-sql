@@ -55,16 +55,8 @@ def getData():
     cur.close()
     con.close()
 
-# getData() #getting data from file_storage table
-       
-
-
-# create_table_stm = """
-# CREATE TABLE files (
-#     orig_filename text not null,
-#     file_data bytea not null
-# )
-# """
+#getting data from file_storage table
+# getData() 
 
 # reading image
 # fin = open("C:\\Users\\VladMaleev\\Desktop\\vue-python-sql\\server\\aj.png", "rb") 
@@ -108,43 +100,7 @@ def getData():
 def ping_pong():
     return jsonify('pong!')
 
-
-# BOOKS = [
-#     {
-#         'title': 'On the Road',
-#         'author': 'Jack Kerouac',
-#         'read': True
-#     },
-#     {
-#         'title': 'Harry Potter and the Philosopher\'s Stone',
-#         'author': 'J. K. Rowling',
-#         'read': False
-#     },
-#     {
-#         'title': 'Green Eggs and Ham',
-#         'author': 'Dr. Seuss',
-#         'read': True
-#     }
-# ]
-
-# @app.route('/books', methods=['GET', 'POST'])
-# def all_books():
-#     response_object = {'status': 'success'}
-
-#     if request.method == 'POST':
-#         post_data = request.get_json()
-#         BOOKS.append({
-#             'title': post_data.get('title'),
-#             'author': post_data.get('author'),
-#             'read': post_data.get('read')
-#         })
-#         response_object['message'] = 'Book added!'
-#     else:
-#         response_object['books'] = BOOKS
-#     return jsonify(response_object)
-
-
-
+#upload file to db
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     response_object = {'status': 'success'}
@@ -159,7 +115,6 @@ def upload():
             )
             cur = con.cursor()
             file = request.data
-            #binary = psycopg2.Binary(data)
             cur.execute("INSERT INTO file_storage(orig_filename, file_data) VALUES (%s, %s)", ("example file", file) )
             con.commit()
 
@@ -173,11 +128,6 @@ def upload():
                 con.close()
 
         return jsonify(response_object)
-    # if request.method == 'POST':
-    #     return jsonify(request.data)
-    
-
-
 
 if __name__ == '__main__':
     app.run()
