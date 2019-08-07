@@ -23,7 +23,6 @@ export default {
     return {
       file: null,
       }
-    };
   },
   methods: {
     submitFile() {
